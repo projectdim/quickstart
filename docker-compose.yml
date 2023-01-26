@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  pgdatabase:
+    container_name: pgdatabase_container
+    image: postgres:14.5
+    restart: always
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5432:5432"
+    volumes: 
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
+  fastapi:
+    container_name: fastapi_container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/:/backend/
+    env_file:
+      - ./backend/.env
+    ports:
+      - 7000:7000
+    depends_on:
+      pgdatabase:
+        condition: service_healthy
+      
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@projectdim.org
+      PGADMIN_DEFAULT_PASSWORD: dim
+    ports:
+      - "5050:80"
+    depends_on:
+      pgdatabase:
+        condition: service_healthy
