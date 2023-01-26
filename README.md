@@ -70,4 +70,4 @@ The frontend container (vue_container) is managed by regular docker. The fronten
 
 
 # Future Improvements
-We can consider setting up these containers in such a way where debugging using a host IDE is possible. This usually involves using docker volumes inconjunction with remote debugging capabilities.
+We can consider setting up these containers in such a way where debugging using a host IDE is possible. This usually involves using docker volumes in conjunction with remote debugging capabilities.
