@@ -62,8 +62,8 @@ fi
 echo 'Launching backend containers..please wait. This may take several minutes.' | tee -a $BACKEND_LOG
 docker compose up --detach >> $BACKEND_LOG 2>&1
 
-DOCKER_COMPOSE_FAILED=$?
-if [ $DOCKER_COMPOSE_FAILED -ne 0 ]; then
+DOCKER_COMPOSE_SUCCEEDED=$?
+if [ $DOCKER_COMPOSE_SUCCEEDED -ne 0 ]; then
     echo "A failure occurred when attempt to launch the backend containers. Please check the backend log file." | tee -a $BACKEND_LOG
     exit 1
 else 
