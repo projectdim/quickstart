@@ -24,8 +24,8 @@ The frontend will be available at **http://localhost:5173**
 
 
 
-# Requirements
-These scripts will perform a git clone (of dev branches) of either the backend or frontend repos. This means 'git' should be available from your terminal.
+# Description
+These scripts will perform a git clone (of dev branches) of either the backend/frontend repos. It will also launch corresponding docker containers. This means both 'git' and 'docker' should be available from your terminal.
 
 These script will exit if environment files (`.env`) are not found in their corresponding folders. For example:
 ```
